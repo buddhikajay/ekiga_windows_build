@@ -431,7 +431,7 @@ else
 endif
 	# regenerate configure, since it might be older than configure.ac
 	cd $(PTLIB_DIR); aclocal && autoconf
-	cd $(PTLIB_DIR)/plugins; aclocal && autoconf
+#	cd $(PTLIB_DIR)/plugins; aclocal && autoconf
 	# apply all ptlib_* patches
 	cd $(PTLIB_DIR); for i in $(EKIGA_DIR)/win32/diff/ptlib_*; do \
 		test "`basename $$i`" != 'ptlib_*' && (patch -p1 <$$i || exit 1) ;\
@@ -575,7 +575,7 @@ else
 endif
 	# regenerate configure, since it might be older than configure.ac
 	cd $(OPAL_DIR); aclocal && autoconf
-	cd $(OPAL_DIR)/plugins; aclocal && autoconf
+#	cd $(OPAL_DIR)/plugins; aclocal && autoconf
 	# apply all opal_* patches
 	cd $(OPAL_DIR); for i in $(EKIGA_DIR)/win32/diff/opal_*; do \
 		test "`basename $$i`" != 'opal_*' && (patch -p1 <$$i || exit 1) ;\
