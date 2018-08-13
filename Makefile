@@ -97,7 +97,7 @@ else
 	OPAL_VER := 3.10-beta12
 	# OPAL_REV: HEAD or revision number
 	OPAL_REV := HEAD
-	OPAL_URL := svn://svn.code.sf.net/p/opalvoip/code/opal/branches/v3_10
+	OPAL_URL := https://git.code.sf.net/p/opalvoip/opal
 	OPAL_ARCHIVE := opal
 	OPAL_DIR := $(BUILDROOT)/opal
 endif
@@ -419,7 +419,7 @@ update-sources::
 ifeq ($(RELEASE),1)
 	$(WGET) -P $(SRCDIR) $(PTLIB_URL)/$(PTLIB_ARCHIVE)
 else
-	$(GIT) clone $(PTLIB_URL) $(SRCDIR)/$(PTLIB_ARCHIVE)
+	$(GIT) clone -b v2_10 --single-branch $(PTLIB_URL) $(SRCDIR)/$(PTLIB_ARCHIVE)
 endif
 
 $(PTLIB_DIR)/configure: binaries $(LIBDIR)/libldap.dll $(LIBDIR)/libogg.a $(LIBDIR)/libspeex.a $(SRCDIR)/$(PTLIB_ARCHIVE) $(LIBDIR)/libexpat.a
@@ -563,7 +563,7 @@ update-sources::
 ifeq ($(RELEASE),1)
 	$(WGET) -P $(SRCDIR) $(OPAL_URL)/$(OPAL_ARCHIVE)
 else
-	$(SVN) co $(OPAL_URL) $(SRCDIR)/$(OPAL_ARCHIVE) -r $(OPAL_REV)
+	$(GIT) clone $(OPAL_URL) $(SRCDIR)/$(OPAL_ARCHIVE)
 endif
 
 $(OPAL_DIR)/configure: binaries $(LIBDIR)/libogg.a $(LIBDIR)/libspeex.a $(LIBDIR)/$(PTLIB_LIB) $(SRCDIR)/$(OPAL_ARCHIVE) $(BINDIR)/avcodec.dll $(LIBDIR)/libx264.a $(LIBDIR)/libcelt0.a $(LIBDIR)/libtheora.a
