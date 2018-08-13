@@ -112,7 +112,7 @@ else
 	PTLIB_VER := 2.10-beta12
 	# PTLIB_REV: HEAD or revision number
 	PTLIB_REV := HEAD
-	PTLIB_URL := svn://svn.code.sf.net/p/opalvoip/code/ptlib/branches/v2_10
+	PTLIB_URL := https://git.code.sf.net/p/opalvoip/ptlib
 	PTLIB_ARCHIVE := ptlib
 	PTLIB_DIR := $(BUILDROOT)/ptlib
 endif
@@ -169,7 +169,7 @@ LIBAV_URL := http://www.libav.org/releases
 LIBAV_DIR := $(BUILDROOT)/libav-$(LIBAV_VER)
 LIBAV_ARCHIVE := libav-$(LIBAV_VER).tar.xz
 
-X264_VER := 35cf912
+X264_VER := a5831aa
 X264_URL := git://git.videolan.org/x264.git
 X264_DIR := $(BUILDROOT)/x264
 X264_ARCHIVE := x264
@@ -419,7 +419,7 @@ update-sources::
 ifeq ($(RELEASE),1)
 	$(WGET) -P $(SRCDIR) $(PTLIB_URL)/$(PTLIB_ARCHIVE)
 else
-	$(SVN) co $(PTLIB_URL) $(SRCDIR)/$(PTLIB_ARCHIVE) -r $(PTLIB_REV)
+	$(GIT) clone $(PTLIB_URL) $(SRCDIR)/$(PTLIB_ARCHIVE)
 endif
 
 $(PTLIB_DIR)/configure: binaries $(LIBDIR)/libldap.dll $(LIBDIR)/libogg.a $(LIBDIR)/libspeex.a $(SRCDIR)/$(PTLIB_ARCHIVE) $(LIBDIR)/libexpat.a
