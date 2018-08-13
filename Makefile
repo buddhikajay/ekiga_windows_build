@@ -109,7 +109,7 @@ ifeq ($(RELEASE),1)
 	PTLIB_ARCHIVE := ptlib-$(PTLIB_VER).tar.xz
 	PTLIB_DIR := $(BUILDROOT)/ptlib-$(PTLIB_VER)
 else
-	PTLIB_VER := 2.10-beta12
+	PTLIB_VER := v2_16
 	# PTLIB_REV: HEAD or revision number
 	PTLIB_REV := HEAD
 	PTLIB_URL := https://git.code.sf.net/p/opalvoip/ptlib
@@ -419,7 +419,7 @@ update-sources::
 ifeq ($(RELEASE),1)
 	$(WGET) -P $(SRCDIR) $(PTLIB_URL)/$(PTLIB_ARCHIVE)
 else
-	$(GIT) clone -b v2_10 --single-branch $(PTLIB_URL) $(SRCDIR)/$(PTLIB_ARCHIVE)
+	$(GIT) clone -b $(PTLIB_VER) --single-branch $(PTLIB_URL) $(SRCDIR)/$(PTLIB_ARCHIVE)
 endif
 
 $(PTLIB_DIR)/configure: binaries $(LIBDIR)/libldap.dll $(LIBDIR)/libogg.a $(LIBDIR)/libspeex.a $(SRCDIR)/$(PTLIB_ARCHIVE) $(LIBDIR)/libexpat.a
